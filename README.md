@@ -54,3 +54,24 @@ The workflow in `.github/workflows/ci.yml` runs on every push to `main`. To deli
 
 ## Security note
 Do not commit passwords, access tokens, or email credentials.
+## Local JSON report receiver
+
+Start the receiver in one terminal:
+
+```powershell
+$env:REPORT_TOKEN = "YOUR_PRIVATE_TOKEN"
+python receiver.py
+```
+
+In a second terminal, using the same token:
+
+```powershell
+$env:REPORT_RECEIVER_URL = "http://127.0.0.1:5001"
+$env:REPORT_TOKEN = "YOUR_PRIVATE_TOKEN"
+python -m pytest -v --junitxml=test-results.xml
+python send_report.py
+```
+
+The sender reads `test-results.xml`, posts the actual test results to the receiver, and the receiver saves the JSON report as `test-report.json`.
+
+In GitHub repository settings, add a repository secret named `REPORT_TOKEN` with the same secret value. Keep the receiver and self-hosted runner running during the demonstration.
