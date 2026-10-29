@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Submission Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 850px; margin: 35px auto; padding: 0 18px; background: #f5f7fb; color: #222; }
+        h1, h2 { color: #17365d; }
+        form, .submission { background: white; padding: 20px; border-radius: 10px; margin-bottom: 22px; box-shadow: 0 2px 8px #0001; }
+        label { display: block; margin-top: 12px; font-weight: bold; }
+        input { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 5px; }
+        button { margin-top: 18px; padding: 11px 18px; background: #1769aa; color: white; border: 0; border-radius: 5px; cursor: pointer; }
+        .error { color: #b00020; font-weight: bold; }
+        .empty { color: #555; }
+        a { overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+    <h1>Assignment Submission Portal</h1>
+    <p>Enter your assignment details and a link to your submission.</p>
+
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+    <form method="POST">
+        <label for="name">Student Name</label>
+        <input id="name" name="name" required>
+
+        <label for="reg_no">Registration Number</label>
+        <input id="reg_no" name="reg_no" required>
+
+        <label for="title">Assignment Title</label>
+        <input id="title" name="title" required>
+
+        <label for="url">Submission URL</label>
+        <input id="url" name="url" type="url" placeholder="https://example.com/assignment" required>
+
+        <button type="submit">Submit Assignment</button>
+    </form>
+
+    <h2>Saved Submissions</h2>
+    {% for item in submissions %}
+        <div class="submission">
+            <p><strong>Student:</strong> {{ item.name }}</p>
+            <p><strong>Registration Number:</strong> {{ item.reg_no }}</p>
+            <p><strong>Assignment:</strong> {{ item.title }}</p>
+            <p><strong>Submission URL:</strong> <a href="{{ item.url }}">{{ item.url }}</a></p>
+        </div>
+    {% else %}
+        <p class="empty">No submissions yet.</p>
+    {% endfor %}
+</body>
+</html>
