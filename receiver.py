@@ -32,8 +32,12 @@ def receive_report():
 
 
 @app.route("/", methods=["GET"])
+@app.route("/health", methods=["GET"])
 def health():
-    return "Test report receiver is running."
+    return jsonify({
+        "status": "ok",
+        "message": "Test report receiver is running."
+    }), 200
 
 
 if __name__ == "__main__":
