@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   test:
-    name: Run Tests and Send Report
+    name: Run Tests and Send JSON Report
     runs-on: self-hosted
 
     steps:
@@ -28,10 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Run tests and generate JUnit report
+      - name: Run tests and generate XML report
         run: python -m pytest -v --junitxml=test-results.xml
 
-      - name: Send report, including failed test results
+      - name: Send report, even when tests fail
         if: always()
         env:
           REPORT_RECEIVER_URL: http://127.0.0.1:5001
