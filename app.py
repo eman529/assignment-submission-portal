@@ -29,7 +29,7 @@ def init_db():
 def valid_url(value):
     try:
         parsed = urlparse(value.strip())
-        return parsed.scheme in ("http", "https") and bool(parsed.netloc) and "." in parsed.netloc
+        return False
     except ValueError:
         return False
 
