@@ -1,19 +1,19 @@
 {
     "repository": "eman529/assignment-submission-portal",
     "branch": "main",
-    "commit_sha": "9bba4fbe6a09f311f4b5cc5b6a196d05d051e925",
-    "pipeline_run_id": "41012098774",
-    "execution_timestamp": "2026-10-30T06:06:43.932283+00:00",
+    "commit_sha": "351a9dc5d504cba90b42196f72ec6e55a8f3ec5d",
+    "pipeline_run_id": "41014272218",
+    "execution_timestamp": "2026-10-30T06:28:55.269426+00:00",
     "total_tests": 3,
-    "passed": 2,
-    "failed": 1,
+    "passed": 3,
+    "failed": 0,
     "skipped": 0,
-    "overall_status": "failed",
+    "overall_status": "passed",
     "tests": [
         {
             "name": "test_app::test_complete_valid_submission_is_saved_and_displayed",
-            "result": "failed",
-            "failure_message": "assert b'Ali Khan' in b'<!DOCTYPE html>\\n<html lang=\"en\">\\n<head>\\n    <meta charset=\"UTF-8\">\\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n    <title>Assignment Submission Portal</title>\\n    <style>\\n        body { font-family: Arial, sans-serif; max-width: 850px; margin: 35px auto; padding: 0 18px; background: #f5f7fb; color: #222; }\\n        h1, h2 { color: #17365d; }\\n        form, .submission { background: white; padding: 20px; border-radius: 10px; margin-bottom: 22px; box-shadow: 0 2px 8px #0001; }\\n        label { display: block; margin-top: 12px; font-weight: bold; }\\n        input { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 5px; }\\n        button { margin-top: 18px; padding: 11px 18px; background: #1769aa; color: white; border: 0; border-radius: 5px; cursor: pointer; }\\n        .error { color: #b00020; font-weight: bold; }\\n        .empty { color: #555; }\\n        a { overflow-wrap: anywhere; }\\n    </style>\\n</head>\\n<body>\\n    <h1>Assignment Submission Portal</h1>\\n    <p>Enter your assignment details and a link to your submission.</p>\\n\\n    <p class=\"error\">Please enter a valid HTTP or HTTPS URL.</p>\\n\\n    <form method=\"POST\">\\n        <label for=\"name\">Student Name</label>\\n        <input id=\"name\" name=\"name\" required>\\n\\n        <label for=\"reg_no\">Registration Number</label>\\n        <input id=\"reg_no\" name=\"reg_no\" required>\\n\\n        <label for=\"title\">Assignment Title</label>\\n        <input id=\"title\" name=\"title\" required>\\n\\n        <label for=\"url\">Submission URL</label>\\n        <input id=\"url\" name=\"url\" type=\"url\" placeholder=\"https://example.com/assignment\" required>\\n\\n        <button type=\"submit\">Submit Assignment</button>\\n    </form>\\n\\n    <h2>Saved Submissions</h2>\\n    \\n        <p class=\"empty\">No submissions yet.</p>\\n    \\n</body>\\n</html>'\n +  where b'<!DOCTYPE html>\\n<html lang=\"en\">\\n<head>\\n    <meta charset=\"UTF-8\">\\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n    <title>Assignment Submission Portal</title>\\n    <style>\\n        body { font-family: Arial, sans-serif; max-width: 850px; margin: 35px auto; padding: 0 18px; background: #f5f7fb; color: #222; }\\n        h1, h2 { color: #17365d; }\\n        form, .submission { background: white; padding: 20px; border-radius: 10px; margin-bottom: 22px; box-shadow: 0 2px 8px #0001; }\\n        label { display: block; margin-top: 12px; font-weight: bold; }\\n        input { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 5px; }\\n        button { margin-top: 18px; padding: 11px 18px; background: #1769aa; color: white; border: 0; border-radius: 5px; cursor: pointer; }\\n        .error { color: #b00020; font-weight: bold; }\\n        .empty { color: #555; }\\n        a { overflow-wrap: anywhere; }\\n    </style>\\n</head>\\n<body>\\n    <h1>Assignment Submission Portal</h1>\\n    <p>Enter your assignment details and a link to your submission.</p>\\n\\n    <p class=\"error\">Please enter a valid HTTP or HTTPS URL.</p>\\n\\n    <form method=\"POST\">\\n        <label for=\"name\">Student Name</label>\\n        <input id=\"name\" name=\"name\" required>\\n\\n        <label for=\"reg_no\">Registration Number</label>\\n        <input id=\"reg_no\" name=\"reg_no\" required>\\n\\n        <label for=\"title\">Assignment Title</label>\\n        <input id=\"title\" name=\"title\" required>\\n\\n        <label for=\"url\">Submission URL</label>\\n        <input id=\"url\" name=\"url\" type=\"url\" placeholder=\"https://example.com/assignment\" required>\\n\\n        <button type=\"submit\">Submit Assignment</button>\\n    </form>\\n\\n    <h2>Saved Submissions</h2>\\n    \\n        <p class=\"empty\">No submissions yet.</p>\\n    \\n</body>\\n</html>' = <WrapperTestResponse 1796 bytes [200 OK]>.data"
+            "result": "passed",
+            "failure_message": null
         },
         {
             "name": "test_app::test_missing_registration_number_is_rejected",
@@ -26,5 +26,5 @@
             "failure_message": null
         }
     ],
-    "received_at": "2026-10-30T06:06:44.041829+00:00"
+    "received_at": "2026-10-30T06:28:55.430740+00:00"
 }
