@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Submission Portal</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+        header {
+            background: #172554;
+            color: white;
+            padding: 28px 8%;
+        }
+        header h1 { margin: 0 0 8px; }
+        header p { margin: 0; color: #cbd5e1; }
+        main {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 0 18px;
+        }
+        .card {
+            background: white;
+            padding: 26px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #0000000d;
+            margin-bottom: 22px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 15px 0 7px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        button:hover { background: #1d4ed8; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+            word-break: break-word;
+        }
+        th { background: #f8fafc; }
+        #message { margin-top: 12px; }
+        footer { text-align: center; color: #64748b; padding: 25px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Assignment Submission Portal</h1>
+    <p>Submit and manage your academic assignments</p>
+</header>
+
+<main>
+    <section class="card">
+        <h2>Submit Your Assignment</h2>
+        <form id="submissionForm">
+            <label for="name">Student Name</label>
+            <input id="name" required>
+
+            <label for="reg">Registration Number</label>
+            <input id="reg" required>
+
+            <label for="title">Assignment Title</label>
+            <input id="title" required>
+
+            <label for="url">Submission URL</label>
+            <input id="url" type="url" placeholder="https://example.com" required>
+
+            <button type="submit">Submit Assignment</button>
+            <p id="message"></p>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Submitted Assignments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Registration No.</th>
+                    <th>Assignment</th>
+                    <th>Submission URL</th>
+                </tr>
+            </thead>
+            <tbody id="submissionList"></tbody>
+        </table>
+    </section>
+</main>
+
+<footer>Assignment Submission Portal — Frontend Preview</footer>
+
+<script>
+    const form = document.getElementById("submissionForm");
+    const list = document.getElementById("submissionList");
+    const message = document.getElementById("message");
+
+    function displaySubmissions() {
+        const items = JSON.parse(localStorage.getItem("submissions") || "[]");
+        list.innerHTML = "";
+
+        items.forEach(item => {
+            const row = document.createElement("tr");
+
+            [item.name, item.reg, item.title].forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            const linkCell = document.createElement("td");
+            const link = document.createElement("a");
+            link.href = item.url;
+            link.textContent = "View";
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            linkCell.appendChild(link);
+            row.appendChild(linkCell);
+
+            list.appendChild(row);
+        });
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const item = {
+            name: document.getElementById("name").value.trim(),
+            reg: document.getElementById("reg").value.trim(),
+            title: document.getElementById("title").value.trim(),
+            url: document.getElementById("url").value.trim()
+        };
+
+        try {
+            const parsed = new URL(item.url);
+            if (!["http:", "https:"].includes(parsed.protocol) || !parsed.hostname.includes(".")) {
+                throw new Error("Invalid URL");
+            }
+        } catch {
+            message.textContent = "Please enter a valid HTTP or HTTPS URL.";
+            message.style.color = "red";
+            return;
+        }
+
+        const items = JSON.parse(localStorage.getItem("submissions") || "[]");
+        items.push(item);
+        localStorage.setItem("submissions", JSON.stringify(items));
+
+        message.textContent = "Assignment added to this browser preview.";
+        message.style.color = "green";
+        form.reset();
+        displaySubmissions();
+    });
+
+    displaySubmissions();
+</script>
+</body>
+</html>
